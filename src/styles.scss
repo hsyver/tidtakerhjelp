@@ -1,0 +1,156 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+
+$ntnui-green: (
+  50: #009e3f,
+  100: #009e3f,
+  200: #009e3f,
+  300: #007d32,
+  400: #007d32,
+  500: #007d32,
+  600: #007d32,
+  700: #006328,
+  800: #006328,
+  900: #006328,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
+
+$tidtaker-primary: mat-palette($ntnui-green);
+$tidtaker-accent: mat-palette($mat-indigo, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$tidtaker-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$tidtaker-theme: mat-light-theme((
+  color: (
+    primary: $tidtaker-primary,
+    accent: $tidtaker-accent,
+    warn: $tidtaker-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($tidtaker-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #EEE;
+}
+* {
+  box-sizing: border-box;
+}
+
+.card {
+  padding: 0 !important;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.card__title {
+ display: flex !important;
+ flex-direction: row;
+ justify-content: space-between;
+ background-color: #007d32; 
+ padding: 20px;
+ color: #FFF;
+
+ .arrKode {
+   opacity: 50%;
+   font-size: 20px;
+ }
+}
+
+.card__content {
+  padding: 20px;
+}
+
+.page-container {
+  margin: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+@media (max-width: 800px) {
+  .page-container {
+    margin: 5% 2% 5%;
+  }
+}
+
+.nav-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+[class*=col-] {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Hyperlink */
+
+a {
+  cursor: pointer;
+  color: #060 !important;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #393 !important;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+button:focus, button:active {
+  outline: none !important;
+}
+
+.mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+.mat-form-field-infix {
+  border: 0;
+  padding: 0 !important;
+}
+
+.paamelding-field .mat-form-field-flex {
+  height: 47px;
+}
+

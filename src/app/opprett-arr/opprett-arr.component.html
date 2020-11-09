@@ -1,0 +1,50 @@
+<div class="page-container">
+    <mat-card class="card">
+        <mat-card-title class="card__title">Opprett nytt arrangement</mat-card-title>
+        <mat-card-content class="card__content">
+            <div class="input-group">
+                <h3>Velg startform</h3>
+                <mat-radio-group [(ngModel)]="startform">
+                    <mat-radio-button *ngFor="let form of startforms" [value]="form">{{form}}</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="input-group">
+                <h3>Velg antall runder</h3>
+                <div class="runder-group">
+                    <div class="runder-group__menn">
+                        <label>Menn</label>
+                        <mat-form-field color="accent">
+                            <button mat-button mat-icon-button matPrefix (click)="incrementRunder('M', -1)" [disabled]="disableDecrement(runderMenn)">
+                                <mat-icon>remove</mat-icon>
+                            </button>
+                            <input matInput type="number" [(ngModel)]="runderMenn"/>
+                            <button mat-button mat-icon-button matSuffix (click)="incrementRunder('M', 1)">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div class="runder-group__kvinner">
+                        <label>Kvinner</label>
+                        <mat-form-field color="accent">
+                            <button mat-button mat-icon-button matPrefix (click)="incrementRunder('K', -1)" [disabled]="disableDecrement(runderKvinner)">
+                                <mat-icon>remove</mat-icon>
+                            </button>
+                            <input matInput type="number" [(ngModel)]="runderKvinner"/>
+                            <button mat-button mat-icon-button matSuffix (click)="incrementRunder('K', 1)">
+                                <mat-icon>add</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <a *ngIf="startform!=null" routerLink="/paameldingsliste">
+                <button class="opprett-button" mat-raised-button color="primary" (click)="createArr()">Opprett</button>
+            </a>
+            <button *ngIf="startform==null" class="opprett-button" mat-raised-button color="primary" [disabled]="true">Opprett</button>
+        </mat-card-content>
+    </mat-card>
+    <div class="nav-row">
+        <a class="back" routerLink="/infoside">← Infoside</a>
+    </div>
+    <mat-progress-bar color="accent" mode="determinate" value="0"></mat-progress-bar>
+</div>

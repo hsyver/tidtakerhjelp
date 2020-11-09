@@ -1,0 +1,16 @@
+<mat-card class="container">
+    <div class="row">
+        <div class="col-2 shrink center-in-row">
+            <mat-icon class="bib-icon" svgIcon="bib">
+                <div class="bib-number">{{paamelding.startnr}}</div>
+            </mat-icon>
+        </div>
+        <h4 class="col-6 name">{{paamelding.medlem.navn}}</h4>
+        <h4 class="col-2 center-in-row">{{paamelding.medlem.kjonn}}</h4>
+        <div class="col-2 center-in-row delete">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="deletePaamelding()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+</mat-card>

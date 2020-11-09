@@ -1,0 +1,33 @@
+h1 {
+    color: white;
+    margin: 0;
+}
+
+.arrkode-search {
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+}
+
+button {
+    margin-left: -45px;
+}
+
+input {
+    width: inherit;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    padding: 0 0 0 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}
+
+:focus {
+    outline: none;
+}
