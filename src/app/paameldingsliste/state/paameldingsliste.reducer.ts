@@ -26,6 +26,12 @@ const paameldingReducer = createReducer(
         }
     }),
 
+    on(PaameldingActions.LoadPaameldingerComplete, (state, { paameldinger }) => {
+        return {
+            ...state,
+            paameldinger: paameldinger
+        }
+    }),
 
 );
 
@@ -34,4 +40,5 @@ export function reducer(state: State | undefined, action: Action) {
 }
 
 export const getMedlemmer = (state: State) => state.medlemmer;
+export const getPaameldinger = (state: State) => state.paameldinger;
 export const getError = (state: State) => state.error;

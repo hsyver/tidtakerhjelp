@@ -1,4 +1,4 @@
-import { createAction, props } from '@ngrx/store';
+import { createAction, props, union } from '@ngrx/store';
 import { Startform } from '../../models/startform.enum';
 
 export const OpprettArr = createAction(
@@ -30,3 +30,14 @@ export const setArr = createAction(
     '[Last] Sett arrangement',
     props<{arrKode: number, startform: Startform, runderMenn: number, runderKvinner: number}>()
 );
+
+const all = union({
+    OpprettArr,
+    OpprettArrComplete,
+    OpprettArrError,
+    loadArr,
+    loadArrFailed,
+    setArr
+  });
+  
+  export type OpprettActionsUnion = typeof all;

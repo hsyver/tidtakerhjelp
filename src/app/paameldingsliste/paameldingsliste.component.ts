@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Medlem } from '../models/medlem.model';
 import * as paameldingActions from './state/paameldingsliste.actions';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import * as fromRoot from '../reducers/index';
-import { startWith, map, catchError, filter } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Paamelding } from '../models/paamelding.model';
 
 @Component({
@@ -12,9 +12,11 @@ import { Paamelding } from '../models/paamelding.model';
   templateUrl: './paameldingsliste.component.html',
   styleUrls: ['./paameldingsliste.component.scss']
 })
-export class PaameldingslisteComponent implements OnInit {
+export class PaameldingslisteComponent implements OnInit,OnDestroy {
   @ViewChild("startnr") startnrField: ElementRef;
   @ViewChild("navn") navnField: ElementRef;
+
+  private subscription: Subscription;
 
   arrKode$: Observable<Number>;
   medlemmer$: Observable<Medlem[]>;
@@ -26,18 +28,24 @@ export class PaameldingslisteComponent implements OnInit {
   medlemInput: Medlem;
   
   filteredMedlemmer;
-  paameldinger: Paamelding[] = [];
-  pid = 1;
+  paameldinger: Paamelding[];
 
   constructor(private store: Store<fromRoot.AppState>) {
     this.error$ = store.select(fromRoot.getError);
   }
 
   ngOnInit(): void {
+    this.store.dispatch(paameldingActions.LoadPaameldinger());
     this.store.dispatch(paameldingActions.LoadMedlemmer());
-    
+
     this.medlemmer$ = this.store.select(fromRoot.getMedlemmer);
     this.arrKode$ = this.store.select(fromRoot.getArrKode);
+
+    this.subscription = this.store.select(fromRoot.getPaameldinger).subscribe((p: Paamelding[]) => this.paameldinger = p);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   applyFilter(event: string) {
@@ -89,7 +97,7 @@ export class PaameldingslisteComponent implements OnInit {
       medlemsid = this.medlemInput.medlemsid;
     }
 
-    this.paameldinger.push({id: this.pid++, startnr: this.startnrInput, medlem: {medlemsid: medlemsid, navn: this.navnInput, kjonn: this.kjonnInput}})
+    this.paameldinger = this.paameldinger.concat({id: 1, startnr: this.startnrInput, medlem: {medlemsid: medlemsid, navn: this.navnInput, kjonn: this.kjonnInput}})
     this.store.dispatch(paameldingActions.AddPaamelding({paamelding: {id: null, startnr: this.startnrInput, medlem: {medlemsid: medlemsid, navn: this.navnInput, kjonn: this.kjonnInput}}}));
 
     console.log(this.medlemInput, this.navnInput, this.kjonnInput);

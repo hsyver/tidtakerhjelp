@@ -5,6 +5,7 @@ import { PaameldingService } from '../../services/paamelding.service'
 
 import * as PaameldingActions from './paameldingsliste.actions';
 import { Medlem } from "../../models/medlem.model";
+import { Paamelding } from "../../models/paamelding.model";
 
 @Injectable()
 export class PaameldingslisteEffects {
@@ -16,12 +17,25 @@ export class PaameldingslisteEffects {
                     .getMedlemmer()
                     .pipe(
                         map((m: Medlem[]) => {
-                            console.log(m)
                             return PaameldingActions.LoadMedlemmerComplete({medlemmer: m})
                         })
                     )
             })
-            //mapTo(PaameldingActions.LoadMedlemmerComplete({medlemmer: this.paameldingService.getMedlemmer()}))
+        )
+    );
+
+    loadPaameldinger$ = createEffect((): any =>
+        this.actions$.pipe(
+            ofType('[Paamelding] Last påmeldinger'),
+            switchMap(() => {
+                return this.paameldingService
+                    .getPaameldinger()
+                    .pipe(
+                        map((p: Paamelding[]) => {
+                            return PaameldingActions.LoadPaameldingerComplete({paameldinger: p})
+                        })
+                    )
+            })
         )
     );
 
