@@ -16,7 +16,7 @@ import { Paamelding } from "../models/paamelding.model";
       return this.http.get<Medlem[]>(this.PHP_API_SERVER + '/readMedlemmer.php');
     }
 
-    getPaameldinger(): Observable<Paamelding[]> {
-      return this.http.get<Paamelding[]>(this.PHP_API_SERVER + '/readPaameldinger.php');
+    getPaameldinger(arrKode: number): Observable<Paamelding[]> {
+      return this.http.get<Paamelding[]>(this.PHP_API_SERVER + '/readPaameldinger.php/?arrKode='+arrKode);
     }
   }

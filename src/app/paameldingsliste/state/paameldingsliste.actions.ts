@@ -1,4 +1,4 @@
-import { createAction, props } from '@ngrx/store';
+import { createAction, props, union } from '@ngrx/store';
 import { Medlem } from '../../models/medlem.model';
 import { Paamelding } from '../../models/paamelding.model';
 
@@ -12,7 +12,8 @@ export const LoadMedlemmerComplete = createAction(
 );
 
 export const LoadPaameldinger = createAction(
-    '[Paamelding] Last påmeldinger'
+    '[Paamelding] Last påmeldinger',
+    props<{arrKode: number}>()
 );
 
 export const LoadPaameldingerComplete = createAction(
@@ -29,3 +30,14 @@ export const DeletePaamelding = createAction(
     '[Paamelding] Slett påmelding',
     props<{id: number}>()
 );
+
+const all = union({
+    LoadMedlemmer,
+    LoadMedlemmerComplete,
+    LoadPaameldinger,
+    LoadPaameldingerComplete,
+    AddPaamelding,
+    DeletePaamelding
+  });
+  
+  export type PaameldingActionsUnion = typeof all;

@@ -3,7 +3,7 @@
     <mat-card class="card">
         <mat-card-title class="card__title">
             Påmeldingsliste
-            <div class="arrKode">(ArrKode: {{arrKode$ | async}})</div>
+            <div class="arrKode">(ArrKode: {{arrKode}})</div>
         </mat-card-title>
         <mat-card-content class="card__content">
             <p>Fyll inn navnet på de startende og angi startnummer. Velg forslag fra medlemslista eller legg til navn manuelt hvis de ikke finnes.</p>
@@ -56,9 +56,11 @@
                 </mat-card>
 
                 <div class="paameldinger__container">
-                    <div class="paameldinger__container__paamelding-card" *ngFor="let paamelding of paameldinger">
-                        <app-paamelding [paamelding]="paamelding" (deletePaameldingEvent)="deletePaamelding($event)"></app-paamelding>
-                    </div>
+                    <ng-container *ngIf="paameldinger$ | async as paameldinger">
+                        <div class="paameldinger__container__paamelding-card" *ngFor="let paamelding of paameldinger">
+                            <app-paamelding [paamelding]="paamelding" (deletePaameldingEvent)="deletePaamelding($event)"></app-paamelding>
+                        </div>
+                    </ng-container>
                 </div>
 
             </div>

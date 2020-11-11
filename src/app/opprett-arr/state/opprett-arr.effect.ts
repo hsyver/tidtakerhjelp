@@ -34,8 +34,8 @@ export class OpprettArrEffects {
     routeToPaamelding$ = createEffect((): any =>
         this.actions$.pipe(
             ofType('[Last] Sett arrangement'),
-            tap(() => {
-                this.router.navigate(['paameldingsliste']);
+            tap((action) => {
+                this.router.navigate(['paameldingsliste'], { queryParams: { arrKode: action.arrKode } });
             })
         ), { dispatch: false }
     );

@@ -27,9 +27,9 @@ export class PaameldingslisteEffects {
     loadPaameldinger$ = createEffect((): any =>
         this.actions$.pipe(
             ofType('[Paamelding] Last påmeldinger'),
-            switchMap(() => {
+            switchMap((action) => {
                 return this.paameldingService
-                    .getPaameldinger()
+                    .getPaameldinger(action.arrKode)
                     .pipe(
                         map((p: Paamelding[]) => {
                             return PaameldingActions.LoadPaameldingerComplete({paameldinger: p})
@@ -39,5 +39,5 @@ export class PaameldingslisteEffects {
         )
     );
 
-    constructor(private paameldingService: PaameldingService, private actions$: Actions) {}
+    constructor(private paameldingService: PaameldingService, private actions$: Actions<PaameldingActions.PaameldingActionsUnion>) {}
 }   
