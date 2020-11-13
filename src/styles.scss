@@ -99,7 +99,6 @@ body {
   margin: 10%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
 }
 
 @media (max-width: 800px) {
@@ -154,3 +153,12 @@ button:focus, button:active {
   height: 47px;
 }
 
+.error {
+  margin-bottom: 2rem;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

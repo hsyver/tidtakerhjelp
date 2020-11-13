@@ -1,4 +1,5 @@
 <div class="page-container">
+    <div class="error">{{error$ | async}}</div>
     <mat-card class="card">
         <mat-card-title class="card__title">Info</mat-card-title>
         <mat-card-content class="card__content">
@@ -11,5 +12,7 @@
             <p><b>Trykk på "Opprett nytt arrangement" for å sette i gang.</b></p>
         </mat-card-content>
     </mat-card>
-    <a class="opprett" routerLink="/opprett">Opprett nytt arrangement →</a>
+    <div class="nav-row">
+        <a class="opprett" routerLink="/opprett">Opprett nytt arrangement →</a>
+    </div>
 </div>

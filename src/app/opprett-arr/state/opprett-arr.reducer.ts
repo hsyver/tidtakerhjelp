@@ -42,9 +42,17 @@ const opprettReducer = createReducer(
       arrKode: arrKode,
       startform: startform,
       runderMenn: runderMenn,
-      runderKvinner: runderKvinner
+      runderKvinner: runderKvinner,
+      error: ''
     }
   }),
+
+  on(OpprettActions.loadArrFailed, (state, { error }) => {
+    return {
+      ...state,
+      error: error
+    }
+  })
 
 );
 
@@ -53,3 +61,4 @@ export function reducer(state: State | undefined, action: Action) {
 }
 
 export const getArrKode = (state: State) => state.arrKode;
+export const getError = (state: State) => state.error;

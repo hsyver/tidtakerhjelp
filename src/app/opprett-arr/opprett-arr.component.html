@@ -1,4 +1,5 @@
 <div class="page-container">
+    <div class="error">{{error$ | async}}</div>
     <mat-card class="card">
         <mat-card-title class="card__title">Opprett nytt arrangement</mat-card-title>
         <mat-card-content class="card__content">
@@ -37,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <a *ngIf="startform!=null" routerLink="/paameldingsliste">
+            <a *ngIf="startform!=null">
                 <button class="opprett-button" mat-raised-button color="primary" (click)="createArr()">Opprett</button>
             </a>
             <button *ngIf="startform==null" class="opprett-button" mat-raised-button color="primary" [disabled]="true">Opprett</button>

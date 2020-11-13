@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as fromRoot from '../reducers/index';
 
 @Component({
   selector: 'app-infoside',
@@ -6,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./infoside.component.scss']
 })
 export class InfosideComponent implements OnInit {
-
-  constructor() { }
+  error$: Observable<String>;
+  
+  constructor(private store: Store<fromRoot.AppState>) { }
 
   ngOnInit(): void {
+    this.error$ = this.store.select(fromRoot.getError);
   }
 
 }

@@ -1,5 +1,6 @@
 <mat-chip-list></mat-chip-list> <!--for chip styling-->
 <div class="page-container">
+    <div class="error">{{error$ | async}}</div>
     <mat-card class="card">
         <mat-card-title class="card__title">
             Påmeldingsliste
@@ -26,9 +27,6 @@
                                     </mat-chip>
                                     <mat-label *ngIf="!medlemInput">Navn</mat-label>
                                     <input class="input-padding" matInput type="text" #navn name="navn" [(ngModel)]="navnInput" [matAutocomplete]="auto" (ngModelChange)="applyFilter($event)" [readonly]="medlemInput">
-                                    <!--<button mat-button *ngIf="navnInput" matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
-                                        <mat-icon>close</mat-icon>
-                                    </button>-->
                                     <mat-autocomplete #auto="matAutocomplete" [displayWith]="display" (optionSelected)="selectMedlem($event.option.value); navn.value=''">
                                         <mat-option *ngFor="let medlem of filteredMedlemmer | async" [value]="medlem">
                                             <mat-icon>person</mat-icon>

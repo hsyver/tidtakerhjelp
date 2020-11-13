@@ -31,18 +31,18 @@ export class PaameldingslisteComponent implements OnInit {
 
   constructor(private store: Store<fromRoot.AppState>, private route: ActivatedRoute, private router: Router) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.error$ = store.select(fromRoot.getError);
   }
-
+  
   ngOnInit(): void {
     this.route.queryParams
-      .subscribe(params => {
-        this.arrKode = params.arrKode;
-      })
-
+    .subscribe(params => {
+      this.arrKode = params.arrKode;
+    })
+    
     this.store.dispatch(paameldingActions.LoadPaameldinger({arrKode: this.arrKode}));
     this.store.dispatch(paameldingActions.LoadMedlemmer());
     
+    this.error$ = this.store.select(fromRoot.getError);
     this.medlemmer$ = this.store.select(fromRoot.getMedlemmer);
     this.paameldinger$ = this.store.select(fromRoot.getPaameldinger)
   }
@@ -96,10 +96,10 @@ export class PaameldingslisteComponent implements OnInit {
       medlemsid = this.medlemInput.medlemsid;
     }
 
-    this.paameldinger = this.paameldinger.concat({id: 1, startnr: this.startnrInput, medlem: {medlemsid: medlemsid, navn: this.navnInput, kjonn: this.kjonnInput}})
-    this.store.dispatch(paameldingActions.AddPaamelding({paamelding: {id: null, startnr: this.startnrInput, medlem: {medlemsid: medlemsid, navn: this.navnInput, kjonn: this.kjonnInput}}}));
+    //this.paameldinger = this.paameldinger.concat({id: 1, startnr: this.startnrInput, medlem: {medlemsid: medlemsid, navn: this.navnInput, kjonn: this.kjonnInput}})
+    this.store.dispatch(paameldingActions.AddPaamelding({paamelding: {id: null, startnr: this.startnrInput, medlem: {medlemsid: medlemsid, navn: this.navnInput, kjonn: this.kjonnInput}}, arrKode: this.arrKode}));
 
-    console.log(this.medlemInput, this.navnInput, this.kjonnInput);
+    console.log(this.startnrInput, this.medlemInput);
 
     this.navnInput = '';
     this.kjonnInput = '';
@@ -110,8 +110,8 @@ export class PaameldingslisteComponent implements OnInit {
   }
 
   deletePaamelding(id: number) {
-    this.paameldinger = this.paameldinger.filter(p => p.id !== id);
-    this.store.dispatch(paameldingActions.DeletePaamelding({id: id}));
+    //this.paameldinger = this.paameldinger.filter(p => p.id !== id);
+    this.store.dispatch(paameldingActions.DeletePaamelding({id: id, arrKode: this.arrKode}));
   }
 
   display(): string {

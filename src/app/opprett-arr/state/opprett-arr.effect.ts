@@ -1,18 +1,29 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType, Effect } from "@ngrx/effects";
-import { map, tap, switchMap } from 'rxjs/operators';
+import { map, tap, switchMap, catchError } from 'rxjs/operators';
 import { OpprettService } from '../../services/opprett.service'
 import { Router } from '@angular/router'
 
 import * as OpprettActions from './opprett-arr.actions';
 import { Startform } from "../../models/startform.enum";
+import { HttpErrorResponse } from "@angular/common/http";
+import { of } from "rxjs";
 
 @Injectable()
 export class OpprettArrEffects {
     loadArr$ = createEffect((): any =>
         this.actions$.pipe(
             ofType('[Last] Last arrangement'),
-            map(action => OpprettActions.setArr({arrKode: action.arrKode, startform: Startform.Fellesstart, runderKvinner: 1, runderMenn: 1}))
+            switchMap((action) => {
+                return this.opprettService
+                    .getArr(action.arrKode)
+                    .pipe(
+                        map((arr: number) => {
+                            return OpprettActions.setArr({arrKode: arr, startform: Startform.Fellesstart, runderKvinner: 1, runderMenn: 1})
+                        }),
+                        catchError(error => of(OpprettActions.loadArrFailed({ error: 'Fant ingen arrangement med ArrKode '+action.arrKode })))
+                    )
+            })
         )
     );
 
@@ -24,7 +35,7 @@ export class OpprettArrEffects {
                     .opprettArr()
                     .pipe(
                         map((arr: number) => {
-                            return OpprettActions.OpprettArrComplete({arrKode: arr})
+                            return OpprettActions.setArr({arrKode: arr, startform: Startform.Fellesstart, runderKvinner: 1, runderMenn: 1})
                         })
                     )
             })

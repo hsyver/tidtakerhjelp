@@ -14,4 +14,8 @@ import { Observable } from "rxjs";
       return this.http.get<Number>(this.PHP_API_SERVER + '/createArr.php');
     }
     
+    getArr(arrKode: number): Observable<number> {
+      return this.http.get<number>(this.PHP_API_SERVER + '/getArr.php?arrKode='+arrKode);
+    }
+
   }

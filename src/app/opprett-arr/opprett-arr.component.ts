@@ -16,11 +16,14 @@ export class OpprettArrComponent implements OnInit {
   runderMenn: number = 1;
   runderKvinner: number = 1;
 
+  error$: Observable<String>;
+
   startforms = [Startform.Intervallstart, Startform.Fellesstart];
   
   constructor(private store: Store<fromRoot.AppState>) { }
 
   ngOnInit(): void {
+    this.error$ = this.store.select(fromRoot.getError);
   }
 
   incrementRunder(gender: string, value: number) {

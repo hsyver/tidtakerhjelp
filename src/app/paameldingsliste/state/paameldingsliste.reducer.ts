@@ -7,13 +7,11 @@ import { Action, createReducer, on } from '@ngrx/store';
 export interface State {
     medlemmer: Medlem[];
     paameldinger: Paamelding[];
-    error: string;
 };
 
 export const initialState: State = {
     medlemmer: [],
     paameldinger: [],
-    error: 'ba',
 };
 
 const paameldingReducer = createReducer(
@@ -33,6 +31,20 @@ const paameldingReducer = createReducer(
         }
     }),
 
+    on(PaameldingActions.AddPaameldingComplete, (state, { paamelding }) => {
+        return {
+            ...state,
+            paameldinger: [...state.paameldinger, paamelding]
+        }
+    }),
+
+    on(PaameldingActions.DeletePaameldingComplete, (state, { id }) => {
+        return {
+            ...state,
+            paameldinger: [...state.paameldinger.filter(p => p.id !== id)]
+        }
+    }),
+
 );
 
 export function reducer(state: State | undefined, action: Action) {
@@ -41,4 +53,3 @@ export function reducer(state: State | undefined, action: Action) {
 
 export const getMedlemmer = (state: State) => state.medlemmer;
 export const getPaameldinger = (state: State) => state.paameldinger;
-export const getError = (state: State) => state.error;

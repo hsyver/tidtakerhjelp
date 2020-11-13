@@ -23,11 +23,21 @@ export const LoadPaameldingerComplete = createAction(
 
 export const AddPaamelding = createAction(
     '[Paamelding] Legg til påmelding',
+    props<{paamelding: Paamelding, arrKode: number}>()
+);
+
+export const AddPaameldingComplete = createAction(
+    '[Paamelding] Påmelding lagt til',
     props<{paamelding: Paamelding}>()
 );
 
 export const DeletePaamelding = createAction(
     '[Paamelding] Slett påmelding',
+    props<{id: number, arrKode: number}>()
+);
+
+export const DeletePaameldingComplete = createAction(
+    '[Paamelding] Påmelding slettet',
     props<{id: number}>()
 );
 
@@ -37,7 +47,9 @@ const all = union({
     LoadPaameldinger,
     LoadPaameldingerComplete,
     AddPaamelding,
-    DeletePaamelding
+    AddPaameldingComplete,
+    DeletePaamelding,
+    DeletePaameldingComplete
   });
   
   export type PaameldingActionsUnion = typeof all;

@@ -3,8 +3,8 @@
 </a>
 
 <div class="arrkode-search">
-    <input #search placeholder="Arrkode" type="number" (keyup.enter)="doSearch($event.target.value)">
-    <button mat-button mat-icon-button aria-label="Search" (click)="doSearch(search.value)">
+    <input #search placeholder="Arrkode" type="number" (keyup.enter)="doSearch($event.target.value); search.value=''">
+    <button mat-button mat-icon-button aria-label="Search" (click)="doSearch(search.value); search.value=''">
         <mat-icon>search</mat-icon>
     </button>
 </div>

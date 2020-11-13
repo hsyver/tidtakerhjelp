@@ -39,5 +39,35 @@ export class PaameldingslisteEffects {
         )
     );
 
+    addPaamelding$ = createEffect((): any =>
+        this.actions$.pipe(
+            ofType('[Paamelding] Legg til påmelding'),
+            switchMap((action) => {
+                return this.paameldingService
+                    .addPaamelding(action.paamelding, action.arrKode)
+                    .pipe(
+                        map((p: Paamelding) => {
+                            return PaameldingActions.AddPaameldingComplete({paamelding: p})
+                        })
+                    )
+            })
+        )
+    );
+
+    deletePaamelding$ = createEffect((): any => 
+        this.actions$.pipe(
+            ofType('[Paamelding] Slett påmelding'),
+            switchMap((action) => {
+                return this.paameldingService
+                    .deletePaamelding(action.id, action.arrKode)
+                    .pipe(
+                        map((id: number) => {
+                            return PaameldingActions.DeletePaameldingComplete({id: id})
+                        })
+                    )
+            })
+        )
+    );
+
     constructor(private paameldingService: PaameldingService, private actions$: Actions<PaameldingActions.PaameldingActionsUnion>) {}
 }   

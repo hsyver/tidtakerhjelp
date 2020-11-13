@@ -19,4 +19,13 @@ import { Paamelding } from "../models/paamelding.model";
     getPaameldinger(arrKode: number): Observable<Paamelding[]> {
       return this.http.get<Paamelding[]>(this.PHP_API_SERVER + '/readPaameldinger.php/?arrKode='+arrKode);
     }
+
+    addPaamelding(paamelding: Paamelding, arrKode: number): Observable<Paamelding> {
+      return this.http.post<Paamelding>(this.PHP_API_SERVER + '/addPaamelding.php?arrKode='+arrKode, paamelding)
+    }
+
+    deletePaamelding(id: number, arrKode: number): Observable<number> {
+      return this.http.delete<number>(this.PHP_API_SERVER + '/deletePaamelding.php?arrKode='+arrKode+'&id='+id)
+    }
+
   }
