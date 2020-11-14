@@ -1,15 +1,29 @@
 <mat-chip-list></mat-chip-list> <!--for chip styling-->
 <div class="page-container">
-    <div class="error">{{error$ | async}}</div>
+    <ngb-alert *ngIf="error$ | async" class="error" type="danger" [dismissible]="false">
+        {{error$ | async}}
+        <!--<div class="error">{{error$ | async}}</div>-->
+    </ngb-alert>
     <mat-card class="card">
         <mat-card-title class="card__title">
-            Påmeldingsliste
-            <div class="arrKode">(ArrKode: {{arrKode}})</div>
+            <div class="card__title__top">
+                Påmeldingsliste
+                <div class="arrKode">(ArrKode: {{arrKode}})</div>
+            </div>
+            <div class="card__title__bottom">
+                <div class="arrNavn">{{ arrNavn$ | async}}</div>
+            </div>
         </mat-card-title>
         <mat-card-content class="card__content">
-            <p>Fyll inn navnet på de startende og angi startnummer. Velg forslag fra medlemslista eller legg til navn manuelt hvis de ikke finnes.</p>
+            <mat-card class="container no-shadow">
+                <ngb-alert *ngIf="archived$ | async" [dismissible]="false">
+                    <strong>Obs! </strong>Dette arrangementet er mer enn 10 dager gammelt og kan ikke redigeres.
+                </ngb-alert>
+            </mat-card>
+            <mat-card class="container no-shadow">
+                <p>Fyll inn navnet på de startende og angi startnummer. Velg forslag fra medlemslista eller legg til navn manuelt hvis de ikke finnes.</p>
+            </mat-card>
             <div class="paameldinger">
-
                 <mat-card class="paameldinger__input container">
                     <form #f="ngForm">
                         <div class="row">
@@ -45,27 +59,27 @@
                                 </mat-form-field>
                             </div>
                             <div class="col-2 center-in-row submit">
-                                <button class="add-paamelding" mat-raised-button color="primary" [disabled]="f.invalid" (click)="addPaamelding(); f.reset()">
+                                <button class="add-paamelding" mat-raised-button color="primary" [disabled]="f.invalid || (archived$ | async)" (click)="addPaamelding(); f.reset()">
                                     Legg til
                                 </button>
                             </div>
                         </div>
                     </form>
                 </mat-card>
-
+                <mat-card class="container next-page no-shadow">
+                    Lagt til alle?
+                    <a [routerLink]="['/tider']" [queryParams]="{arrKode: arrKode}">
+                        <button class="starttider-button" mat-raised-button color="primary">Legg inn tider →</button>
+                    </a>
+                </mat-card>
                 <div class="paameldinger__container">
                     <ng-container *ngIf="paameldinger$ | async as paameldinger">
                         <div class="paameldinger__container__paamelding-card" *ngFor="let paamelding of paameldinger">
-                            <app-paamelding [paamelding]="paamelding" (deletePaameldingEvent)="deletePaamelding($event)"></app-paamelding>
+                            <app-paamelding [paamelding]="paamelding" [archived]="archived$ | async" (deletePaameldingEvent)="deletePaamelding($event)"></app-paamelding>
                         </div>
                     </ng-container>
                 </div>
-
             </div>
         </mat-card-content>
     </mat-card>
-    <div class="nav-row">
-        <a class="starttider" routerLink="/opprett">Starttider →</a>
-    </div>
-    <mat-progress-bar color="accent" mode="determinate" value="25"></mat-progress-bar>
 </div>

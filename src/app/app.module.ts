@@ -30,6 +30,7 @@ import { PaameldingslisteEffects } from './paameldingsliste/state/paameldingslis
 import { PaameldingComponent } from './paameldingsliste/paamelding/paamelding.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from "@angular/common/http";
+import { TiderComponent } from './tider/tider.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { HttpClientModule } from "@angular/common/http";
     InfosideComponent,
     OpprettArrComponent,
     PaameldingslisteComponent,
-    PaameldingComponent
+    PaameldingComponent,
+    TiderComponent
   ],
   imports: [
     BrowserModule,

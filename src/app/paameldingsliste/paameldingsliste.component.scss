@@ -67,10 +67,6 @@ input::-webkit-inner-spin-button {
     margin-top: 0.55rem;
 }
 
-.mat-card {
-    margin-bottom: 1rem;
-}
-
 .center-in-row {
     display: flex;
     flex-direction: row;
@@ -98,3 +94,21 @@ input::-webkit-inner-spin-button {
   .radio-button {
     margin: 5px;
   }
+
+.next-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: #555;
+}
+
+.no-shadow {
+    box-shadow: none;
+}
+
+.starttider-button {
+    margin-left: 10px;
+}

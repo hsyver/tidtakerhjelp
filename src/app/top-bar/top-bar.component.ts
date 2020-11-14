@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../reducers/index';
 import { loadArr } from '../opprett-arr/state/opprett-arr.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'top-bar',
@@ -10,7 +11,7 @@ import { loadArr } from '../opprett-arr/state/opprett-arr.actions';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor(private store: Store<fromRoot.AppState>) { }
+  constructor(private store: Store<fromRoot.AppState>, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +23,8 @@ export class TopBarComponent implements OnInit {
     } else {
       //do the search
       console.log(searchString);
-      this.store.dispatch(loadArr({arrKode: searchString}));
+      //this.store.dispatch(loadArr({arrKode: searchString}));
+      this.router.navigate(['paameldingsliste'], { queryParams: { arrKode: searchString } });
     }
   }
 }

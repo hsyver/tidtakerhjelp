@@ -1,33 +1,23 @@
 import * as OpprettActions from './opprett-arr.actions';
 import { Startform } from '../../models/startform.enum';
 import { on, createReducer, Action } from '@ngrx/store';
+import { Arrangement } from '../../models/arrangement.model';
 
 
 export interface State {
-  arrKode: number;
-  startform: Startform;
-  runderMenn: number;
-  runderKvinner: number;
+  arrangement: Arrangement;
+  archived: boolean;
   error: string;
 };
 
 export const initialState: State = {
-  arrKode: null,
-  startform: Startform.Intervallstart,
-  runderMenn: 1,
-  runderKvinner: 1,
+  arrangement: {arrKode: null, navn: '', dato: new Date(), startform: Startform.Intervallstart, runderMenn: 1, runderKvinner: 1},
+  archived: false,
   error: '',
 };
 
 const opprettReducer = createReducer(
   initialState,
-
-  on(OpprettActions.OpprettArrComplete, (state, { arrKode }) => {
-    return {
-      ...state,
-      arrKode: arrKode
-    }
-  }),
 
   on(OpprettActions.OpprettArrError, (state, { error }) => {
     return {
@@ -36,14 +26,11 @@ const opprettReducer = createReducer(
     }
   }),
 
-  on(OpprettActions.setArr, (state, { arrKode, startform, runderMenn, runderKvinner }) => {
+  on(OpprettActions.setArr, (state, { arrangement, archived }) => {
     return {
-      ...state,
-      arrKode: arrKode,
-      startform: startform,
-      runderMenn: runderMenn,
-      runderKvinner: runderKvinner,
-      error: ''
+      arrangement: arrangement,
+      archived: archived,
+      error: '',
     }
   }),
 
@@ -60,5 +47,6 @@ export function reducer(state: State | undefined, action: Action) {
   return opprettReducer(state, action);
 }
 
-export const getArrKode = (state: State) => state.arrKode;
+export const getArrNavn = (state: State) => state.arrangement.navn;
 export const getError = (state: State) => state.error;
+export const getArchived = (state: State) => state.archived;

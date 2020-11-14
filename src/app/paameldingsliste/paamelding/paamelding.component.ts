@@ -10,6 +10,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 })
 export class PaameldingComponent implements OnInit {
   @Input() paamelding: Paamelding;
+  @Input() archived: boolean;
   @Output() deletePaameldingEvent = new EventEmitter<number>();
 
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {

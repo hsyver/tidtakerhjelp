@@ -9,12 +9,11 @@ import * as fromRoot from '../reducers/index';
   styleUrls: ['./infoside.component.scss']
 })
 export class InfosideComponent implements OnInit {
-  error$: Observable<String>;
   
   constructor(private store: Store<fromRoot.AppState>) { }
 
   ngOnInit(): void {
-    this.error$ = this.store.select(fromRoot.getError);
+
   }
 
 }

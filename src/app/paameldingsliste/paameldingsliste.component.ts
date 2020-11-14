@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Medlem } from '../models/medlem.model';
 import * as paameldingActions from './state/paameldingsliste.actions';
+import * as opprettActions from '../opprett-arr/state/opprett-arr.actions';
+
 import { Observable } from 'rxjs';
 import * as fromRoot from '../reducers/index';
 import { map } from 'rxjs/operators';
@@ -17,6 +19,8 @@ export class PaameldingslisteComponent implements OnInit {
   @ViewChild("startnr") startnrField: ElementRef;
   @ViewChild("navn") navnField: ElementRef;
   arrKode: number;
+  arrNavn$: Observable<string>;
+  archived$: Observable<boolean>;
 
   medlemmer$: Observable<Medlem[]>;
   paameldinger$: Observable<Paamelding[]>;
@@ -37,14 +41,17 @@ export class PaameldingslisteComponent implements OnInit {
     this.route.queryParams
     .subscribe(params => {
       this.arrKode = params.arrKode;
+      this.store.dispatch(opprettActions.loadArr({arrKode: params.arrKode}));
     })
     
     this.store.dispatch(paameldingActions.LoadPaameldinger({arrKode: this.arrKode}));
     this.store.dispatch(paameldingActions.LoadMedlemmer());
     
     this.error$ = this.store.select(fromRoot.getError);
+    this.arrNavn$ = this.store.select(fromRoot.getArrNavn);
     this.medlemmer$ = this.store.select(fromRoot.getMedlemmer);
-    this.paameldinger$ = this.store.select(fromRoot.getPaameldinger)
+    this.paameldinger$ = this.store.select(fromRoot.getPaameldinger);
+    this.archived$ = this.store.select(fromRoot.getArchived);
   }
 
   applyFilter(event: string) {
@@ -96,7 +103,6 @@ export class PaameldingslisteComponent implements OnInit {
       medlemsid = this.medlemInput.medlemsid;
     }
 
-    //this.paameldinger = this.paameldinger.concat({id: 1, startnr: this.startnrInput, medlem: {medlemsid: medlemsid, navn: this.navnInput, kjonn: this.kjonnInput}})
     this.store.dispatch(paameldingActions.AddPaamelding({paamelding: {id: null, startnr: this.startnrInput, medlem: {medlemsid: medlemsid, navn: this.navnInput, kjonn: this.kjonnInput}}, arrKode: this.arrKode}));
 
     console.log(this.startnrInput, this.medlemInput);
@@ -110,7 +116,6 @@ export class PaameldingslisteComponent implements OnInit {
   }
 
   deletePaamelding(id: number) {
-    //this.paameldinger = this.paameldinger.filter(p => p.id !== id);
     this.store.dispatch(paameldingActions.DeletePaamelding({id: id, arrKode: this.arrKode}));
   }
 

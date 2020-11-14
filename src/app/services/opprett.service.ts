@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { Arrangement } from "../models/arrangement.model";
 
 @Injectable({
     providedIn: 'root'
@@ -10,12 +11,12 @@ import { Observable } from "rxjs";
   
     PHP_API_SERVER = "https://org.ntnu.no/langrenn/tidtaker/api";
 
-    opprettArr(): Observable<Number> {
-      return this.http.get<Number>(this.PHP_API_SERVER + '/createArr.php');
+    opprettArr(arrangement: Arrangement): Observable<Arrangement> {
+      return this.http.put<Arrangement>(this.PHP_API_SERVER + '/createArr.php', arrangement);
     }
     
-    getArr(arrKode: number): Observable<number> {
-      return this.http.get<number>(this.PHP_API_SERVER + '/getArr.php?arrKode='+arrKode);
+    getArr(arrKode: number): Observable<Arrangement> {
+      return this.http.get<Arrangement>(this.PHP_API_SERVER + '/getArr.php?arrKode='+arrKode);
     }
 
   }

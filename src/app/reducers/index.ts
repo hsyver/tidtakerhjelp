@@ -25,7 +25,8 @@ export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [
 
 export const getOpprettState = (state: AppState) => state.opprett;
 
-export const getArrKode = createSelector(getOpprettState, fromOpprett.getArrKode);
+export const getArrNavn = createSelector(getOpprettState, fromOpprett.getArrNavn);
+export const getArchived = createSelector(getOpprettState, fromOpprett.getArchived);
 export const getError = createSelector(getOpprettState, fromOpprett.getError);
 
 export const getPaameldingState = (state: AppState) => state.paamelding;
