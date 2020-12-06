@@ -12,6 +12,7 @@ import { Arrangement } from "../../models/arrangement.model";
 
 @Injectable()
 export class OpprettArrEffects {
+
     loadArr$ = createEffect((): any =>
         this.actions$.pipe(
             ofType('[Last] Last arrangement'),
@@ -35,7 +36,7 @@ export class OpprettArrEffects {
                             let archived = diffInDays > 10;
                             console.log(archived);
 
-                            return OpprettActions.setArr({ arrangement: arr, archived: archived })
+                            return OpprettActions.setArr({ arrangement: arr, archived: archived, routeToPaameldingsliste: action.routeToPaameldingsliste })
                         }),
                         catchError(error => of(OpprettActions.loadArrFailed({ error: 'Fant ingen arrangement med ArrKode '+action.arrKode })))
                     )
@@ -50,8 +51,9 @@ export class OpprettArrEffects {
                 return this.opprettService
                     .opprettArr(action.arrangement)
                     .pipe(
-                        map((arr: Arrangement) => {
-                            return OpprettActions.setArr({ arrangement: arr, archived: false })
+                        map((arr: number) => {
+                            console.log(action.arrangement.dato)
+                            return OpprettActions.setArr({ arrangement: {...action.arrangement, arrKode: arr}, archived: false, routeToPaameldingsliste: true })
                         })
                     )
             })
@@ -62,7 +64,9 @@ export class OpprettArrEffects {
         this.actions$.pipe(
             ofType('[Last] Sett arrangement'),
             tap((action) => {
-                this.router.navigate(['paameldingsliste'], { queryParams: { arrKode: action.arrangement.arrKode } });
+                if ( action.routeToPaameldingsliste ) {
+                    this.router.navigate(['paameldingsliste'], { queryParams: { arrKode: action.arrangement.arrKode } });
+                }
             })
         ), { dispatch: false }
     );

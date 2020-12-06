@@ -2,7 +2,6 @@
 <div class="page-container">
     <ngb-alert *ngIf="error$ | async" class="error" type="danger" [dismissible]="false">
         {{error$ | async}}
-        <!--<div class="error">{{error$ | async}}</div>-->
     </ngb-alert>
     <mat-card class="card">
         <mat-card-title class="card__title">
@@ -17,7 +16,7 @@
         <mat-card-content class="card__content">
             <mat-card class="container no-shadow">
                 <ngb-alert *ngIf="archived$ | async" [dismissible]="false">
-                    <strong>Obs! </strong>Dette arrangementet er mer enn 10 dager gammelt og kan ikke redigeres.
+                    <strong>Obs! </strong>Dette arrangementet er mer enn 10 dager gammelt og kan ikke redigeres i tidtakerhjelpen lenger.
                 </ngb-alert>
             </mat-card>
             <mat-card class="container no-shadow">

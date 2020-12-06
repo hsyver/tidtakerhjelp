@@ -41,7 +41,7 @@ export class PaameldingslisteComponent implements OnInit {
     this.route.queryParams
     .subscribe(params => {
       this.arrKode = params.arrKode;
-      this.store.dispatch(opprettActions.loadArr({arrKode: params.arrKode}));
+      this.store.dispatch(opprettActions.loadArr({arrKode: params.arrKode, routeToPaameldingsliste: true}));
     })
     
     this.store.dispatch(paameldingActions.LoadPaameldinger({arrKode: this.arrKode}));

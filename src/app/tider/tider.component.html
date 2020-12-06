@@ -1,1 +1,41 @@
-<p>tider works!</p>
+<mat-chip-list></mat-chip-list> <!--for chip styling-->
+<div class="page-container">
+    <ngb-alert *ngIf="error$ | async" class="error" type="danger" [dismissible]="false">
+        <!--{{error$ | async}}-->
+    </ngb-alert>
+    <mat-card class="card">
+        <mat-card-title class="card__title">
+            <div class="card__title__top">
+                Tider
+                <div class="arrKode">(ArrKode: {{arrKode}})</div>
+            </div>
+            <div class="card__title__bottom">
+                <div class="arrNavn">{{ arrNavn$ | async}}</div>
+            </div>
+        </mat-card-title>
+        <mat-card-content class="card__content">
+            <mat-card class="container no-shadow">
+                <ngb-alert *ngIf="archived$ | async" [dismissible]="false">
+                    <strong>Obs! </strong>Dette arrangementet er mer enn 10 dager gammelt og kan ikke redigeres i tidtakerhjelpen lenger.
+                </ngb-alert>
+            </mat-card>
+            <mat-card class="container prev-page no-shadow">
+                <a [routerLink]="['/paameldingsliste']" [queryParams]="{arrKode: arrKode}">
+                    <button class="paameldingsliste-button" mat-raised-button color="primary">← Påmeldingsliste</button>
+                </a>
+            </mat-card>
+            <mat-card class="container no-shadow">
+                <p>Infotekst.</p>
+            </mat-card>
+            <div class="paameldinger">
+                <div class="paameldinger__container">
+                    <ng-container *ngIf="paameldinger$ | async as paameldinger">
+                        <div class="paameldinger__container__paamelding-card" *ngFor="let paamelding of paameldinger">
+                            <app-tid [paamelding]="paamelding" [archived]="archived$ | async"></app-tid>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

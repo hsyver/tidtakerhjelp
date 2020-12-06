@@ -1,5 +1,4 @@
 import { createAction, props, union } from '@ngrx/store';
-import { Startform } from '../../models/startform.enum';
 import { Arrangement } from '../../models/arrangement.model';
 
 export const OpprettArr = createAction(
@@ -14,7 +13,7 @@ export const OpprettArrError = createAction(
 
 export const loadArr = createAction(
     '[Last] Last arrangement',
-    props<{arrKode: number}>()
+    props<{arrKode: number, routeToPaameldingsliste: boolean}>()
 );
 
 export const loadArrFailed = createAction(
@@ -24,7 +23,7 @@ export const loadArrFailed = createAction(
 
 export const setArr = createAction(
     '[Last] Sett arrangement',
-    props<{arrangement: Arrangement, archived: boolean}>()
+    props<{arrangement: Arrangement, archived: boolean, routeToPaameldingsliste: boolean}>()
 );
 
 const all = union({

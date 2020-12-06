@@ -40,8 +40,8 @@ export class OpprettArrComponent implements OnInit {
 
   createArr() {
     this.store.dispatch(OpprettArr({arrangement: {arrKode: null, 
-                                                  navn: 'Test', 
-                                                  dato: new Date(), 
+                                                  navn: 'Testnavn', 
+                                                  dato: null, 
                                                   startform: Startform.Intervallstart, 
                                                   runderMenn: this.runderMenn, 
                                                   runderKvinner: this.runderKvinner} 
