@@ -41,7 +41,7 @@ const paameldingReducer = createReducer(
     on(PaameldingActions.DeletePaameldingComplete, (state, { id }) => {
         return {
             ...state,
-            paameldinger: [...state.paameldinger.filter(p => p.id !== id)]
+            paameldinger: [...state.paameldinger.filter(p => p.id != id)]
         }
     }),
 

@@ -59,14 +59,29 @@ export class PaameldingslisteEffects {
             ofType('[Paamelding] Slett påmelding'),
             switchMap((action) => {
                 return this.paameldingService
-                    .deletePaamelding(action.id, action.arrKode)
-                    .pipe(
-                        map((id: number) => {
+                .deletePaamelding(action.id, action.arrKode)
+                .pipe(
+                    map((id: number) => {
                             return PaameldingActions.DeletePaameldingComplete({id: id})
                         })
                     )
             })
         )
+    );
+
+    updateStarttime$ = createEffect((): any =>
+            this.actions$.pipe(
+                ofType('[Tid] Oppdater starttid'),
+                switchMap((action) => {
+                    return this.paameldingService
+                        .updateStarttid(action.id, action.starttid, action.arrKode)
+                        .pipe(
+                            map(() => {
+                                return PaameldingActions.UpdateStarttidComplete({})
+                            })
+                        )
+                })
+            )
     );
 
     constructor(private paameldingService: PaameldingService, private actions$: Actions<PaameldingActions.PaameldingActionsUnion>) {}

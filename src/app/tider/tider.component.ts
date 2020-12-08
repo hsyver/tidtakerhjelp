@@ -40,4 +40,8 @@ export class TiderComponent implements OnInit {
 
   }
 
+  updateStarttid(obj: {id: number, starttid: string}) {
+    this.store.dispatch(paameldingActions.UpdateStarttid({id: obj.id, starttid: obj.starttid, arrKode: this.arrKode}))
+  }
+
 }

@@ -103,7 +103,7 @@ export class PaameldingslisteComponent implements OnInit {
       medlemsid = this.medlemInput.medlemsid;
     }
 
-    this.store.dispatch(paameldingActions.AddPaamelding({paamelding: {id: null, startnr: this.startnrInput, medlem: {medlemsid: medlemsid, navn: this.navnInput, kjonn: this.kjonnInput}}, arrKode: this.arrKode}));
+    this.store.dispatch(paameldingActions.AddPaamelding({paamelding: {id: null, startnr: this.startnrInput, starttid: null, medlem: {medlemsid: medlemsid, navn: this.navnInput, kjonn: this.kjonnInput}}, arrKode: this.arrKode}));
 
     console.log(this.startnrInput, this.medlemInput);
 

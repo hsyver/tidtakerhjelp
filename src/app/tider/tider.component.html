@@ -31,7 +31,7 @@
                 <div class="paameldinger__container">
                     <ng-container *ngIf="paameldinger$ | async as paameldinger">
                         <div class="paameldinger__container__paamelding-card" *ngFor="let paamelding of paameldinger">
-                            <app-tid [paamelding]="paamelding" [archived]="archived$ | async"></app-tid>
+                            <app-tid [paamelding]="paamelding" [archived]="archived$ | async" (updateStarttidEvent)="updateStarttid($event)"></app-tid>
                         </div>
                     </ng-container>
                 </div>

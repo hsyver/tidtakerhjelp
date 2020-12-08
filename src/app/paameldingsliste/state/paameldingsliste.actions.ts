@@ -41,6 +41,16 @@ export const DeletePaameldingComplete = createAction(
     props<{id: number}>()
 );
 
+export const UpdateStarttid = createAction(
+    '[Tid] Oppdater starttid',
+    props<{id: number, starttid: string, arrKode: number}>()   
+);
+
+export const UpdateStarttidComplete = createAction(
+    '[Tid] Starttid oppdatert',
+    props<{}>()   
+);
+
 const all = union({
     LoadMedlemmer,
     LoadMedlemmerComplete,
@@ -49,7 +59,9 @@ const all = union({
     AddPaamelding,
     AddPaameldingComplete,
     DeletePaamelding,
-    DeletePaameldingComplete
+    DeletePaameldingComplete,
+    UpdateStarttid,
+    UpdateStarttidComplete
   });
   
   export type PaameldingActionsUnion = typeof all;

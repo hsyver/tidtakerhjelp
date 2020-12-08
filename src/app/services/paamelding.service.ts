@@ -28,4 +28,8 @@ import { Paamelding } from "../models/paamelding.model";
       return this.http.delete<number>(this.PHP_API_SERVER + '/deletePaamelding.php?arrKode='+arrKode+'&id='+id)
     }
 
+    updateStarttid(id: number, starttid: string, arrKode: number) {
+      return this.http.put<Object>(this.PHP_API_SERVER + '/updateStarttid.php?arrKode='+arrKode+'&id='+id, {'starttid': starttid})
+    }
+
   }

@@ -7,7 +7,7 @@
         </div>
         <h4 class="col-2 name">{{paamelding.medlem.navn}}</h4>
         <div class="col-2 starttid">
-            <ngb-timepicker [(ngModel)]="time" [seconds]="true" [secondStep]="15"></ngb-timepicker>
+            <ngb-timepicker [(ngModel)]="starttid" (ngModelChange)="onStarttidChange($event)" [seconds]="true" [secondStep]="15"></ngb-timepicker>
         </div>
         <div class="col-6 rundetider">
             <div *ngFor="let i of [].constructor(runder)">
