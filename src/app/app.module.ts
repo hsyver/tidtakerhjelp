@@ -29,10 +29,10 @@ import { OpprettArrEffects } from './opprett-arr/state/opprett-arr.effect';
 import { PaameldingslisteEffects } from './paameldingsliste/state/paameldingsliste.effect';
 import { PaameldingComponent } from './paameldingsliste/paamelding/paamelding.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-//import { NgbTimepicker } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from "@angular/common/http";
 import { TiderComponent } from './tider/tider.component';
 import { TidComponent } from './tider/tid/tid.component';
+import { TiderEffects } from './tider/state/tider.effects';
 
 @NgModule({
   declarations: [
@@ -64,9 +64,8 @@ import { TidComponent } from './tider/tid/tid.component';
     HttpClientModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AppEffects, OpprettArrEffects, PaameldingslisteEffects]),
-    NgbModule//,
-    //NgbTimepicker
+    EffectsModule.forRoot([AppEffects, OpprettArrEffects, PaameldingslisteEffects, TiderEffects]),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

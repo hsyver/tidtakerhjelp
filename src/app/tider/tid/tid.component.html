@@ -1,18 +1,35 @@
-<mat-card class="container">
-    <div class="row">
-        <div class="col-2 shrink center-in-row">
-            <mat-icon class="bib-icon" svgIcon="bib">
-                <div class="bib-number">{{paamelding.startnr}}</div>
-            </mat-icon>
-        </div>
-        <h4 class="col-2 name">{{paamelding.medlem.navn}}</h4>
-        <div class="col-2 starttid">
-            <ngb-timepicker [(ngModel)]="starttid" (ngModelChange)="onStarttidChange($event)" [seconds]="true" [secondStep]="15"></ngb-timepicker>
-        </div>
-        <div class="col-6 rundetider">
-            <div *ngFor="let i of [].constructor(runder)">
-                <ngb-timepicker [(ngModel)]="time" [seconds]="true" [spinners]="false"></ngb-timepicker>
+<mat-card class="card container">
+    <mat-card-title class="card__title title">
+        <mat-icon class="bib-icon" svgIcon="bib">
+            <div class="bib-number">{{paamelding.startnr}}</div>
+        </mat-icon>
+        <h4 class="name">{{paamelding.medlem.navn}}</h4>
+    </mat-card-title>
+    <mat-card-content class="card__content timepickers">
+        <div class="starttid">
+            <h4 class="pickertype">Starttid</h4>
+            <div class="starttidpicker">
+                <ngb-timepicker [(ngModel)]="starttid" 
+                                (ngModelChange)="onStarttidChange($event)" 
+                                [spinners]="!archived" 
+                                [seconds]="true" 
+                                [secondStep]="15" 
+                                size="small" 
+                                [readonlyInputs]="archived"></ngb-timepicker>
             </div>
         </div>
-    </div>
+        <div class="passeringstid">
+            <div *ngFor="let runde of [].constructor(runder); let i = index;">
+                <h4 class="pickertype">Passeringstid {{i+1}}</h4>
+                <div class="passeringstidpicker">
+                    <ngb-timepicker [(ngModel)]="passeringstid[i]" 
+                                    (ngModelChange)="onPasseringstidChange($event, passeringstider[i])" 
+                                    [seconds]="true" 
+                                    [spinners]="false" 
+                                    size="small" 
+                                    [readonlyInputs]="archived"></ngb-timepicker>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
 </mat-card>

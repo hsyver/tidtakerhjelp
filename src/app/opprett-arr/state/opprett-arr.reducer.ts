@@ -28,6 +28,7 @@ const opprettReducer = createReducer(
 
   on(OpprettActions.setArr, (state, { arrangement, archived }) => {
     return {
+      ...state,
       arrangement: arrangement,
       archived: archived,
       error: '',
@@ -48,5 +49,7 @@ export function reducer(state: State | undefined, action: Action) {
 }
 
 export const getArrNavn = (state: State) => state.arrangement.navn;
+export const getRunderKvinner = (state: State) => state.arrangement.runderKvinner;
+export const getRunderMenn = (state: State) => state.arrangement.runderMenn;
 export const getError = (state: State) => state.error;
 export const getArchived = (state: State) => state.archived;

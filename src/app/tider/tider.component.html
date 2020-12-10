@@ -25,15 +25,24 @@
                 </a>
             </mat-card>
             <mat-card class="container no-shadow">
-                <p>Infotekst.</p>
+                <p>Legg inn starttid og passeringstider, inkludert tid i mål. Hvis du ikke fikk skrevet ned alle passeringstider i farta må du skrive inn samme passeringstid flere ganger for å fylle alle boksene. La en av passeringstidene stå tom for å gi DNF.</p>
             </mat-card>
             <div class="paameldinger">
                 <div class="paameldinger__container">
-                    <ng-container *ngIf="paameldinger$ | async as paameldinger">
-                        <div class="paameldinger__container__paamelding-card" *ngFor="let paamelding of paameldinger">
-                            <app-tid [paamelding]="paamelding" [archived]="archived$ | async" (updateStarttidEvent)="updateStarttid($event)"></app-tid>
-                        </div>
-                    </ng-container>
+                    <div *ngIf="passeringstider$ | async">
+                        <ng-container *ngIf="paameldinger$ | async as paameldinger">
+                            <div class="paameldinger__container__paamelding-card" *ngFor="let paamelding of paameldinger">
+                                <app-tid [paamelding]="paamelding" 
+                                            [passeringstider]="passeringstider$ | async"
+                                            [runderKvinner]="runderKvinner$ | async"
+                                            [runderMenn]="runderMenn$ | async"
+                                            [archived]="archived$ | async" 
+                                            (updateStarttidEvent)="updateStarttid($event)"
+                                            (updatePasseringstidEvent)="updatePasseringstid($event)"
+                                            (addPasseringstidEvent)="addPasseringstid($event)"></app-tid>
+                            </div>
+                        </ng-container>
+                    </div>
                 </div>
             </div>
         </mat-card-content>

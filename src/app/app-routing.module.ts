@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'infoside', component: InfosideComponent },
   { path: 'opprett', component: OpprettArrComponent },
   { path: 'paameldingsliste', component: PaameldingslisteComponent },
-  { path: 'tider', component: TiderComponent},
+  { path: 'tider', component: TiderComponent },
   { path: '',   redirectTo: '/infoside', pathMatch: 'full' }
 ];
 
