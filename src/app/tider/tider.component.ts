@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as fromRoot from '../reducers/index';
@@ -11,7 +11,8 @@ import { Paamelding } from '../models/paamelding.model';
 @Component({
   selector: 'app-tider',
   templateUrl: './tider.component.html',
-  styleUrls: ['./tider.component.scss']
+  styleUrls: ['./tider.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TiderComponent implements OnInit {
   arrKode: number;
@@ -52,12 +53,8 @@ export class TiderComponent implements OnInit {
     this.store.dispatch(paameldingActions.UpdateStarttid({id: obj.id, starttid: obj.starttid, arrKode: this.arrKode}))
   }
 
-  updatePasseringstid(obj: {id: number, passeringstid: string}) {
-    this.store.dispatch(tiderActions.UpdatePasseringstid({id: obj.id, passeringstid: obj.passeringstid, arrKode: this.arrKode}))
-  }
-
-  addPasseringstid(obj: {startnr: number, passeringstid: string}) {
-    this.store.dispatch(tiderActions.AddPasseringstid({startnr: obj.startnr, passeringstid: obj.passeringstid, arrKode: this.arrKode}))
+  updatePasseringstider(obj: {startnr: number, passeringstider: string[]}) {
+    this.store.dispatch(tiderActions.UpdatePasseringstider({startnr: obj.startnr, passeringstider: obj.passeringstider, arrKode: this.arrKode}))
   }
 
 }

@@ -1,13 +1,14 @@
 .prev-page {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    font-size: 15px;
     font-weight: 500;
     color: #555;
 }
 
-.paameldingsliste-button {
-    margin-left: 10px;
+@media (max-width: 800px) {
+    .nav-button {
+        font-size: 10px;
+    }
 }

@@ -1,0 +1,32 @@
+<mat-chip-list></mat-chip-list> <!--for chip styling-->
+<div class="page-container">
+    <ngb-alert *ngIf="error$ | async" class="error" type="danger" [dismissible]="false">
+        <!--{{error$ | async}}-->
+    </ngb-alert>
+    <mat-card class="card">
+        <mat-card-title class="card__title">
+            <div class="card__title__top">
+                Tider
+                <div class="arrKode">(ArrKode: {{arrKode}})</div>
+            </div>
+            <div class="card__title__bottom">
+                <div class="arrNavn">{{ arrNavn$ | async}}</div>
+            </div>
+        </mat-card-title>
+        <mat-card-content class="card__content">
+            <mat-card class="container prev-page no-shadow">
+                <a [routerLink]="['/tider']" [queryParams]="{arrKode: arrKode}">
+                    <button class="nav-button" mat-raised-button color="primary">← Tider</button>
+                </a>
+            </mat-card>
+            <mat-card class="container no-shadow">
+                <p>Blablabla.</p>
+            </mat-card>
+            <mat-card class="container no-shadow scroll">
+                <ng-container *ngIf="resultatliste$ | async as resultatliste">
+                    <div [innerHTML]="resultatliste"></div>
+                </ng-container>
+            </mat-card>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -22,5 +22,20 @@ export class TiderEffects {
         )
     );
 
+    updatePasseringtider$ = createEffect((): any =>
+        this.actions$.pipe(
+            ofType('[Tider] Oppdater passeringstider'),
+            switchMap((action) => {
+                return this.tiderService
+                    .updatePasseringstider(action.startnr, action.passeringstider, action.arrKode)
+                    .pipe(
+                        map(() => {
+                            return TiderActions.UpdatePasseringstiderComplete({})
+                        })
+                    )
+            })
+        )
+    );
+
     constructor(private tiderService: TiderService, private actions$: Actions<TiderActions.TiderActionsUnion>) {}
 }   

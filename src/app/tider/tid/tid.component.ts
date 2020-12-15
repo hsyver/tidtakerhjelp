@@ -10,14 +10,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class TidComponent implements OnInit {
   @Input() paamelding: Paamelding;
-  @Input() passeringstider: {id: number, startnr: number, tid: string}[]
+  @Input() passeringstider: {startnr: number, tid: string}[]
   @Input() runderKvinner: number;
   @Input() runderMenn: number;
   @Input() archived: boolean;
   @Output() updateStarttidEvent = new EventEmitter<{id: number, starttid: string}>();
-  @Output() updatePasseringstidEvent = new EventEmitter<{id: number, passeringstid: string}>();
-  @Output() addPasseringstidEvent = new EventEmitter<{startnr: number, passeringstid: string}>();
-
+  @Output() updatePasseringstiderEvent = new EventEmitter<{startnr: number, passeringstider: string[]}>();
 
   starttid = {hour: 0, minute: 0, second: 0};
   passeringstid = [];
@@ -56,16 +54,22 @@ export class TidComponent implements OnInit {
     this.updateStarttidEvent.emit({id: this.paamelding.id, starttid: starttidString});
   }
 
-  onPasseringstidChange(passeringstid: {hour: number, minute: number, second: number}, p: any) {
-    let paddedPasseringstid = this.pad(passeringstid);
-    let passeringstidString = `${paddedPasseringstid.hour}:${paddedPasseringstid.minute}:${paddedPasseringstid.second}`;
+  onPasseringstidChange(passeringstid: {hour: number, minute: number, second: number}) {
+    if ( passeringstid ) {
+      let passeringstider: string[] = [];
 
-    if ( !p.id ) {
-      console.log(passeringstidString);
-      this.addPasseringstidEvent.emit({startnr: this.paamelding.startnr, passeringstid: passeringstidString});
-    } else {
-      console.log(p.id, passeringstidString);
-      this.updatePasseringstidEvent.emit({id: p.id, passeringstid: passeringstidString});
+      for ( var i = 0; i < this.passeringstid.length; i++ ) {
+        if ( this.passeringstid[i] ) {
+          let paddedPasseringstid = this.pad(this.passeringstid[i]);
+          let passeringstidString = `${paddedPasseringstid.hour}:${paddedPasseringstid.minute}:${paddedPasseringstid.second}`;
+          
+          passeringstider.push(passeringstidString);
+        }
+      }
+      
+      console.log(passeringstider);
+
+      this.updatePasseringstiderEvent.emit({startnr: this.paamelding.startnr, passeringstider: passeringstider});
     }
   }
   

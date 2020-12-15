@@ -21,7 +21,10 @@
             </mat-card>
             <mat-card class="container prev-page no-shadow">
                 <a [routerLink]="['/paameldingsliste']" [queryParams]="{arrKode: arrKode}">
-                    <button class="paameldingsliste-button" mat-raised-button color="primary">← Påmeldingsliste</button>
+                    <button class="nav-button" mat-raised-button color="primary">← Påmeldingsliste</button>
+                </a>
+                <a [routerLink]="['/resultatliste']" [queryParams]="{arrKode: arrKode}">
+                    <button class="nav-button" mat-raised-button color="primary">Generer resultatliste →</button>
                 </a>
             </mat-card>
             <mat-card class="container no-shadow">
@@ -38,8 +41,7 @@
                                             [runderMenn]="runderMenn$ | async"
                                             [archived]="archived$ | async" 
                                             (updateStarttidEvent)="updateStarttid($event)"
-                                            (updatePasseringstidEvent)="updatePasseringstid($event)"
-                                            (addPasseringstidEvent)="addPasseringstid($event)"></app-tid>
+                                            (updatePasseringstiderEvent)="updatePasseringstider($event)"></app-tid>
                             </div>
                         </ng-container>
                     </div>

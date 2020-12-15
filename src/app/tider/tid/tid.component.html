@@ -23,7 +23,7 @@
                 <h4 class="pickertype">Passeringstid {{i+1}}</h4>
                 <div class="passeringstidpicker">
                     <ngb-timepicker [(ngModel)]="passeringstid[i]" 
-                                    (ngModelChange)="onPasseringstidChange($event, passeringstider[i])" 
+                                    (ngModelChange)="onPasseringstidChange($event)" 
                                     [seconds]="true" 
                                     [spinners]="false" 
                                     size="small" 

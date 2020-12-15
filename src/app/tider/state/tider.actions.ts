@@ -10,29 +10,21 @@ export const LoadPasseringstiderComplete = createAction(
     props<{passeringstider: {id: number, startnr: number, tid: string}[]}>()
 );
 
-export const UpdatePasseringstid = createAction(
-    '[Tider] Oppdater passeringstid',
-    props<{id: number, passeringstid: string, arrKode: number}>()
+export const UpdatePasseringstider = createAction(
+    '[Tider] Oppdater passeringstider',
+    props<{startnr: number, passeringstider: string[], arrKode: number}>()
 )
 
-export const UpdatePasseringstidComplete = createAction(
-    '[Tid] Passeringstid oppdatert',
-    props<{}>()   
-);
-
-export const AddPasseringstid = createAction(
-    '[Tider] Legg til passeringstid',
-    props<{startnr: number, passeringstid: string, arrKode: number}>()
-)
-
-export const AddPasseringstidComplete = createAction(
-    '[Tid] Passeringstid lagt til',
+export const UpdatePasseringstiderComplete = createAction(
+    '[Tid] Passeringstider oppdatert',
     props<{}>()   
 );
 
 const all = union({
     LoadPasseringstider,
     LoadPasseringstiderComplete,
+    UpdatePasseringstider,
+    UpdatePasseringstiderComplete,
   });
   
   export type TiderActionsUnion = typeof all;

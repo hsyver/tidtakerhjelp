@@ -33,6 +33,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { TiderComponent } from './tider/tider.component';
 import { TidComponent } from './tider/tid/tid.component';
 import { TiderEffects } from './tider/state/tider.effects';
+import { ResultatlisteComponent } from './resultatliste/resultatliste.component';
+import { ResultatlisteEffects } from './resultatliste/state/resultatliste.effects';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { TiderEffects } from './tider/state/tider.effects';
     PaameldingslisteComponent,
     PaameldingComponent,
     TiderComponent,
-    TidComponent
+    TidComponent,
+    ResultatlisteComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,7 @@ import { TiderEffects } from './tider/state/tider.effects';
     HttpClientModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AppEffects, OpprettArrEffects, PaameldingslisteEffects, TiderEffects]),
+    EffectsModule.forRoot([AppEffects, OpprettArrEffects, PaameldingslisteEffects, TiderEffects, ResultatlisteEffects]),
     NgbModule
   ],
   providers: [],
