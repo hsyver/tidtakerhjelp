@@ -21,20 +21,10 @@ export class OpprettArrEffects {
                     .getArr(action.arrKode)
                     .pipe(
                         map((arr: Arrangement) => {
-                            console.log(arr.arrKode);
-                            console.log(arr.navn);
-                            console.log(arr.dato);
-                            console.log(new Date(arr.dato));
-                            console.log(new Date().valueOf());
-                            console.log(Math.floor((new Date().valueOf()-new Date(arr.dato).valueOf())/(1000*3600*24)))
-                            console.log(arr.startform);
-                            console.log(arr.runderMenn);
-                            console.log(arr.runderKvinner);
                             
                             let timediff = new Date().valueOf() - new Date(arr.dato).valueOf()
                             let diffInDays = Math.floor(timediff / (1000 * 3600 * 24))
                             let archived = diffInDays > 10;
-                            console.log(archived);
 
                             return OpprettActions.setArr({ arrangement: arr, archived: archived, routeToPaameldingsliste: action.routeToPaameldingsliste })
                         }),
@@ -52,7 +42,6 @@ export class OpprettArrEffects {
                     .opprettArr(action.arrangement)
                     .pipe(
                         map((arr: number) => {
-                            console.log(action.arrangement.dato)
                             return OpprettActions.setArr({ arrangement: {...action.arrangement, arrKode: arr}, archived: false, routeToPaameldingsliste: true })
                         })
                     )

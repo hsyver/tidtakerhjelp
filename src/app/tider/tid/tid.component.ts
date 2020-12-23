@@ -66,8 +66,6 @@ export class TidComponent implements OnInit {
           passeringstider.push(passeringstidString);
         }
       }
-      
-      console.log(passeringstider);
 
       this.updatePasseringstiderEvent.emit({startnr: this.paamelding.startnr, passeringstider: passeringstider});
     }

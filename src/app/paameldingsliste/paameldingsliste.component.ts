@@ -105,8 +105,6 @@ export class PaameldingslisteComponent implements OnInit {
 
     this.store.dispatch(paameldingActions.AddPaamelding({paamelding: {id: null, startnr: this.startnrInput, starttid: null, medlem: {medlemsid: medlemsid, navn: this.navnInput, kjonn: this.kjonnInput}}, arrKode: this.arrKode}));
 
-    console.log(this.startnrInput, this.medlemInput);
-
     this.navnInput = '';
     this.kjonnInput = '';
     this.startnrInput = null;
