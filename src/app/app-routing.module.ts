@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: 'paameldingsliste', component: PaameldingslisteComponent },
   { path: 'tider', component: TiderComponent },
   { path: 'resultatliste', component: ResultatlisteComponent},
-  { path: '',   redirectTo: '/infoside', pathMatch: 'full' }
+  { path: '',   redirectTo: '/infoside', pathMatch: 'full' },
+  { path: '**', redirectTo: '/infoside'}
 ];
 
 @NgModule({

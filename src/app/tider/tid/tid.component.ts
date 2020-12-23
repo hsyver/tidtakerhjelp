@@ -24,7 +24,7 @@ export class TidComponent implements OnInit {
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
     this.matIconRegistry.addSvgIcon(
       'bib',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/bibwhite.svg')
+      this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/bibwhite.svg')
     );
   }
 

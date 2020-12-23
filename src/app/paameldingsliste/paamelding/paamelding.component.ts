@@ -16,7 +16,7 @@ export class PaameldingComponent implements OnInit {
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
     this.matIconRegistry.addSvgIcon(
       'bib',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/bib.svg')
+      this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/bib.svg')
     );
   }
 
