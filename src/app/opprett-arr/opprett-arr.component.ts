@@ -15,6 +15,7 @@ export class OpprettArrComponent implements OnInit {
   startform: Startform;
   runderMenn: number = 1;
   runderKvinner: number = 1;
+  navn: string = '';
 
   error$: Observable<String>;
 
@@ -40,9 +41,9 @@ export class OpprettArrComponent implements OnInit {
 
   createArr() {
     this.store.dispatch(OpprettArr({arrangement: {arrKode: null, 
-                                                  navn: 'Testnavn', 
+                                                  navn: this.navn, 
                                                   dato: null, 
-                                                  startform: Startform.Intervallstart, 
+                                                  startform: this.startform, 
                                                   runderMenn: this.runderMenn, 
                                                   runderKvinner: this.runderKvinner} 
                                                 }));

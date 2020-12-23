@@ -17,13 +17,7 @@ export class TopBarComponent implements OnInit {
   }
 
   doSearch(searchString: number) {
-    if ( !searchString ) {
-      //return to home
-      console.log("ikke gjør noe some helst")
-    } else {
-      //do the search
-      console.log(searchString);
-      //this.store.dispatch(loadArr({arrKode: searchString}));
+    if ( searchString ) {
       this.router.navigate(['paameldingsliste'], { queryParams: { arrKode: searchString } });
     }
   }

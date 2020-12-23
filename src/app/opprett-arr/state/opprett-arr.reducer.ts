@@ -38,6 +38,8 @@ const opprettReducer = createReducer(
   on(OpprettActions.loadArrFailed, (state, { error }) => {
     return {
       ...state,
+      arrangement: null,
+      archived: false,
       error: error
     }
   })

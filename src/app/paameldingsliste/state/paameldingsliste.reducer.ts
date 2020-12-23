@@ -1,6 +1,7 @@
 import { Medlem } from '../../models/medlem.model';
 import { Paamelding } from '../../models/paamelding.model';
 import * as PaameldingActions from './paameldingsliste.actions';
+import * as OpprettActions from '../../opprett-arr/state/opprett-arr.actions';
 import { Action, createReducer, on } from '@ngrx/store';
 
 
@@ -42,6 +43,13 @@ const paameldingReducer = createReducer(
         return {
             ...state,
             paameldinger: [...state.paameldinger.filter(p => p.id != id)]
+        }
+    }),
+
+    on(OpprettActions.loadArr, (state) => {
+        return {
+            ...state,
+            paameldinger: []
         }
     }),
 

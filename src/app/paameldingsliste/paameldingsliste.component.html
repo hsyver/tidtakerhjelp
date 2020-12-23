@@ -65,12 +65,14 @@
                         </div>
                     </form>
                 </mat-card>
-                <mat-card class="container next-page no-shadow">
-                    Lagt til alle?
-                    <a [routerLink]="['/tider']" [queryParams]="{arrKode: arrKode}">
-                        <button class="starttider-button" mat-raised-button color="primary">Legg inn tider →</button>
-                    </a>
-                </mat-card>
+                <ng-container *ngIf="(paameldinger$ | async)?.length != 0">
+                    <mat-card class="container next-page no-shadow">
+                        Lagt til alle?
+                        <a [routerLink]="['/tider']" [queryParams]="{arrKode: arrKode}">
+                            <button class="starttider-button" mat-raised-button color="primary">Legg inn tider →</button>
+                        </a>
+                    </mat-card>
+                </ng-container>
                 <div class="paameldinger__container">
                     <ng-container *ngIf="paameldinger$ | async as paameldinger">
                         <div class="paameldinger__container__paamelding-card" *ngFor="let paamelding of paameldinger">

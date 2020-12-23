@@ -1,7 +1,7 @@
 <mat-chip-list></mat-chip-list> <!--for chip styling-->
 <div class="page-container">
     <ngb-alert *ngIf="error$ | async" class="error" type="danger" [dismissible]="false">
-        <!--{{error$ | async}}-->
+        {{error$ | async}}
     </ngb-alert>
     <mat-card class="card">
         <mat-card-title class="card__title">
@@ -45,6 +45,9 @@
                             </div>
                         </ng-container>
                     </div>
+                    <ng-container *ngIf="!(passeringstider$ | async)">
+                        <mat-spinner [diameter]="70"></mat-spinner>
+                    </ng-container>
                 </div>
             </div>
         </mat-card-content>

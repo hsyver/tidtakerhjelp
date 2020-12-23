@@ -15,7 +15,6 @@ import { Observable } from "rxjs";
     }
 
     updatePasseringstider(startnr: number, passeringstider: string[], arrKode: number) {
-        console.log(passeringstider);
         return this.http.put<Object>(this.PHP_API_SERVER + '/updatePasseringstider.php?arrKode='+arrKode+'&startnr='+startnr, {'passeringstider': passeringstider});
     }
 

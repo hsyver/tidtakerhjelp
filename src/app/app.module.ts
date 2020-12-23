@@ -16,6 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { InfosideComponent } from './infoside/infoside.component';
 import { OpprettArrComponent } from './opprett-arr/opprett-arr.component';
 import { PaameldingslisteComponent } from './paameldingsliste/paameldingsliste.component';
@@ -64,6 +65,7 @@ import { ResultatlisteEffects } from './resultatliste/state/resultatliste.effect
     MatAutocompleteModule,
     MatChipsModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
     HttpClientModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],

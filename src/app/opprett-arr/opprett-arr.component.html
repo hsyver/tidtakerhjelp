@@ -4,6 +4,12 @@
         <mat-card-title class="card__title">Opprett nytt arrangement</mat-card-title>
         <mat-card-content class="card__content">
             <div class="input-group">
+                <h3>Angi navn på arrangement</h3>
+                <mat-form-field class="navn">
+                    <input matInput name="navn" [(ngModel)]="navn">
+                </mat-form-field>
+            </div>
+            <div class="input-group">
                 <h3>Velg startform</h3>
                 <mat-radio-group [(ngModel)]="startform">
                     <mat-radio-button *ngFor="let form of startforms" [value]="form">{{form}}</mat-radio-button>

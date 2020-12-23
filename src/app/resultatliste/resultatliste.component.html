@@ -1,7 +1,7 @@
 <mat-chip-list></mat-chip-list> <!--for chip styling-->
 <div class="page-container">
     <ngb-alert *ngIf="error$ | async" class="error" type="danger" [dismissible]="false">
-        <!--{{error$ | async}}-->
+        {{error$ | async}}
     </ngb-alert>
     <mat-card class="card">
         <mat-card-title class="card__title">
@@ -20,9 +20,12 @@
                 </a>
             </mat-card>
             <mat-card class="container no-shadow">
-                <p>Blablabla.</p>
+                <p>Dette er hvordan resultatlistene blir seende ut. Hvis alt ser riktig ut melder du fra til web-ansvarlig på Slack eller mail med ArrKode for at det skal bli publisert på hjemmesiden.</p>
             </mat-card>
             <mat-card class="container no-shadow scroll">
+                <ng-container *ngIf="!(resultatliste$ | async)">
+                    <mat-spinner [diameter]="70"></mat-spinner>
+                </ng-container>
                 <ng-container *ngIf="resultatliste$ | async as resultatliste">
                     <div [innerHTML]="resultatliste"></div>
                 </ng-container>
