@@ -38,7 +38,7 @@ const opprettReducer = createReducer(
   on(OpprettActions.loadArrFailed, (state, { error }) => {
     return {
       ...state,
-      arrangement: null,
+      arrangement: {arrKode: null, navn: '', dato: null, startform: null, runderMenn: null, runderKvinner: null},
       archived: false,
       error: error
     }
