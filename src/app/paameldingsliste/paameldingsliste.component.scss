@@ -6,33 +6,9 @@
     text-align: end;
 }
 
-.add-paamelding {
-    //margin-left: 1rem;
-    //margin-top: 0.5rem;
-    //margin-bottom: 0.5rem;
-}
-
 .paameldinger__container__paamelding-card:last-child {
     padding-bottom: 1rem;
 }
-
-/*.paameldinger__container {
-    max-height: 600px;
-    overflow-y: auto;
-    overflow-y: overlay;
-    overflow-x: hidden;
-
-    background-image: (//-webkit-linear-gradient(top, #fff, rgba(255, 255, 255, 0)),
-    //-webkit-linear-gradient(bottom, #fff, rgba(255, 255, 255, 0)), 
-    -webkit-linear-gradient(top, #999, rgba(255, 255, 255, 0)), 
-    -webkit-linear-gradient(bottom, #999, rgba(255, 255, 255, 0))
-    );
-    background-position: 0 0, 0 100%, 0 0, 0 100%;
-    background-repeat: no-repeat;
-    background-color: white;
-    background-size: 100% 5em, 100% 5em, 100% 2em, 100% 2em;
-    background-attachment: local, local, scroll, scroll; 
-}*/
 
 .paameldinger__input {
     margin-bottom: 5px;

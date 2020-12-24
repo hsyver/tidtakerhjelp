@@ -14,8 +14,8 @@
             </div>
         </mat-card-title>
         <mat-card-content class="card__content">
-            <mat-card class="container no-shadow">
-                <ngb-alert *ngIf="archived$ | async" [dismissible]="false">
+            <mat-card *ngIf="archived$ | async" class="container no-shadow">
+                <ngb-alert [dismissible]="false">
                     <strong>Obs! </strong>Dette arrangementet er mer enn 10 dager gammelt og kan ikke redigeres i tidtakerhjelpen lenger.
                 </ngb-alert>
             </mat-card>
