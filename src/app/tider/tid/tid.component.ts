@@ -72,7 +72,7 @@ export class TidComponent implements OnInit {
   }
   
   pad(starttid: {hour: number, minute: number, second: number}) {
-    return {hour: starttid.hour.toString(), minute: this._pad(starttid.minute.toString()), second: this._pad(starttid.second.toString())}
+    return {hour: this._pad(starttid.hour.toString()), minute: this._pad(starttid.minute.toString()), second: this._pad(starttid.second.toString())}
   }
 
   _pad(time: string): string {
