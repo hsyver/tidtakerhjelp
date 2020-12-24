@@ -10,7 +10,7 @@ import { Paamelding } from "../models/paamelding.model";
   export class PaameldingService {
     constructor (private http: HttpClient) {}
   
-    PHP_API_SERVER = "https://org.ntnu.no/langrenn/tidtaker/api";
+    PHP_API_SERVER = "https://org.ntnu.no/langrenn/tidtakerhjelpen/api";
 
     getMedlemmer(): Observable<Medlem[]> {
       return this.http.get<Medlem[]>(this.PHP_API_SERVER + '/readMedlemmer.php');

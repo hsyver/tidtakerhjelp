@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
   export class TiderService {
     constructor (private http: HttpClient) {}
   
-    PHP_API_SERVER = "https://org.ntnu.no/langrenn/tidtaker/api";
+    PHP_API_SERVER = "https://org.ntnu.no/langrenn/tidtakerhjelpen/api";
 
     getPasseringstider(arrKode: number): Observable<{id: number, startnr: number, tid: string}[]> {
         return this.http.get<{id: number, startnr: number, tid: string}[]>(this.PHP_API_SERVER + '/readPasseringstider.php/?arrKode='+arrKode);
