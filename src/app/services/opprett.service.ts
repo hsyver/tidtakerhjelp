@@ -9,7 +9,7 @@ import { Arrangement } from "../models/arrangement.model";
   export class OpprettService {
     constructor (private http: HttpClient) {}
   
-    PHP_API_SERVER = "https://org.ntnu.no/langrenn/tidtakerhjelpen/api";
+    PHP_API_SERVER = "https://langrenn.org.ntnu.no/tidtakerhjelpen/api";
 
     opprettArr(arrangement: Arrangement): Observable<number> {
       return this.http.put<number>(this.PHP_API_SERVER + '/createArr.php', arrangement);
